@@ -49,9 +49,9 @@ namespace grafy
             krawedzie.Add(k13); krawedzie.Add(k14);
             krawedzie.Add(k15); krawedzie.Add(k16);
             Graf g = Stworz(krawedzie, wezly);
-            for (int i = 0; i < g.ListaWezlow.Count; i++)
+            for (int i = 0; i < g.ListaKrawedzi.Count; i++)
             {
-                MessageBox.Show(g.ListaWezlow[i].wartosc.ToString());
+                MessageBox.Show(g.ListaKrawedzi[i].ToString());
             }
         }
         public Graf Stworz(List<Krawedz> krawedzie, List<Wezel> wezly)
@@ -150,6 +150,11 @@ namespace grafy
             this.poczatek = poczatek;
             this.koniec = koniec;
         }
+        public override string ToString()
+        {
+            return "pocz = " + this.poczatek.wartosc.ToString() + "koniec = " + this.koniec.wartosc.ToString();
+        }
+
     }
     public class Wezel
     {

@@ -35,7 +35,12 @@ namespace grafy
             Krawedz k14 = new Krawedz(9, w1, w2);
             Krawedz k15 = new Krawedz(9, w2, w3);
             Krawedz k16 = new Krawedz(9, w6, w7);
+            List<Wezel> wezly = new List<Wezel>();
             List<Krawedz> krawedzie = new List<Krawedz>();
+            wezly.Add(w0); wezly.Add(w1);
+            wezly.Add(w2); wezly.Add(w3);
+            wezly.Add(w4); wezly.Add(w5);
+            wezly.Add(w6); wezly.Add(w7);
             krawedzie.Add(k1);
             krawedzie.Add(k2);  krawedzie.Add(k3); krawedzie.Add(k4);
             krawedzie.Add(k5); krawedzie.Add(k6);   krawedzie.Add(k7);
@@ -43,8 +48,13 @@ namespace grafy
             krawedzie.Add(k11); krawedzie.Add(k12);     
             krawedzie.Add(k13); krawedzie.Add(k14);
             krawedzie.Add(k15); krawedzie.Add(k16);
+            Graf g = Stworz(krawedzie, wezly);
+            for (int i = 0; i < g.ListaWezlow.Count; i++)
+            {
+                MessageBox.Show(g.ListaWezlow[i].wartosc.ToString());
+            }
         }
-        public Graf Stworz(List<Krawedz> krawedzie)
+        public Graf Stworz(List<Krawedz> krawedzie, List<Wezel> wezly)
         {
             if (krawedzie == null)
             {
@@ -55,8 +65,16 @@ namespace grafy
             List<Graf> listaGrafow = new List<Graf>();
             Graf g = new Graf(krawedzie[0]);
             listaGrafow.Add(g);
-            while(g.ListaWezlow.Count == g.ListaKrawedzi.Count + 1 || krawedzie == null)
+            while(true)
             {
+                if (wezly.Count -1 == listaGrafow[0].ListaKrawedzi.Count)
+                {
+                    break;
+                }
+                if(krawedzie == null)
+                {
+                    break;
+                }
                 Krawedz k = krawedzie[0];
                 krawedzie.RemoveAt(0);
                 int ile = g.Sprawdz(k);
